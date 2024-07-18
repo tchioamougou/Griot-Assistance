@@ -37,8 +37,7 @@
                                 </path>
                             </svg></div>
                     </span>
-                    <p class="leading-relaxed"><span class="block font-bold text-gray-700">Griot AI </span>{{ ch.message
-                        }}</p>
+                    <p class="leading-relaxed"><span class="block font-bold text-gray-700">Griot AI </span> <span v-html="ch.message"></span></p>
                 </div>
 
                 <!--  User Chat Message -->

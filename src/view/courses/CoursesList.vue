@@ -71,7 +71,7 @@ const onPreview = (cs) => {
                     </button>
                 </div>
                 <div class="mt-5 w-full">
-                    <template v-for="(cs, i) in listeCourse">
+                    <template v-for="(cs, i) in listeCourse" :key="i">
                         <course-item :course="cs" @preview="onPreview(cs)"></course-item>
                     </template>
                 </div>

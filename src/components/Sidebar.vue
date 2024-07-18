@@ -36,7 +36,7 @@ const items = ref([{
               fill="currentColor" />
           </svg>
 `,
-},
+}/*,
 {
   label: "Coding",
   link: "/coding",
@@ -48,7 +48,7 @@ const items = ref([{
               clip-rule="evenodd" />
           </svg>
 `,
-}, {
+}*/, {
   label: "CV Assistance",
   link: "/cv_assistance",
   name: "courses",

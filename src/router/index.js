@@ -17,6 +17,32 @@ const routes = [
             title: ' Dashboard'
         }
     },
+    {
+        path: '/cv_assistance',
+        name: 'cv_assistance',
+        component: () => import('../view/cv/cvAnalyse.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+
+    {
+        path: '/interviews',
+        name: 'interviews',
+        component: () => import('../view/interviews/InterviewList.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+
+    {
+        path: '/learning',
+        name: 'learning',
+        component: () => import('../view/learning/LearningList.vue'),
+        meta: {
+            title: ' Learning'
+        }
+    },
 
 ]
 
