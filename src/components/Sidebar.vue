@@ -37,7 +37,7 @@ const items = ref([{
           </svg>
 `,
 },
-{
+/*{
   label: "Coding",
   link: "/coding",
   name: "coding",
@@ -48,7 +48,7 @@ const items = ref([{
               clip-rule="evenodd" />
           </svg>
 `,
-}, {
+},*/ {
   label: "CV Assistance",
   link: "/cv_assistance",
   name: "courses",

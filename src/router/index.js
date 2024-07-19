@@ -8,7 +8,6 @@ const routes = [
             title: ' Dashboard'
         }
     },
-
     {
         path: '/courses',
         name: 'courses',
@@ -17,7 +16,30 @@ const routes = [
             title: ' Dashboard'
         }
     },
-
+    {
+        path: '/learning',
+        name: 'learning',
+        component: () => import('../view/learning/LearningList.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+    {
+        path: '/cv_assistance',
+        name: 'cv_assistance',
+        component: () => import('../view/assistance/CvAssistance.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+    {
+        path: '/interviews',
+        name: 'interviews',
+        component: () => import('../view/interviews/InterviewsList.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
 ]
 
 const router = createRouter({
