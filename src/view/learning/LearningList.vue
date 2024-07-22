@@ -1,9 +1,8 @@
 <script setup>
-import { ref } from 'vue';
-import DashboardLayout from '../../components/DashboardLayout.vue';
-import LearningForm from './LearningForm.vue';
+import { defineAsyncComponent, ref } from 'vue';
 import { items } from './LearningItems';
-import LearningPlay from './LearningPlay.vue';
+const LearningForm = defineAsyncComponent(() => import('./LearningForm.vue'));
+const LearningPlay = defineAsyncComponent(() => import('./LearningPlay.vue'));
 const itemsLearning = items;
 const selectedCourse = ref({});
 const isLearning = ref(false);

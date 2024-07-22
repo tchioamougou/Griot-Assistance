@@ -1,6 +1,7 @@
 <script setup>
-import Sidebar from './Sidebar.vue'
-import Header from './Header.vue'
+import { defineAsyncComponent } from 'vue';
+const Sidebar = defineAsyncComponent(() => import('./Sidebar.vue'));
+const Header = defineAsyncComponent(() => import('./Header.vue'));
 </script>
 
 <template>
