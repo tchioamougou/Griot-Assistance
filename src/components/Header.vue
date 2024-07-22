@@ -1,10 +1,18 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<script setup>
+import { computed, ref } from 'vue'
 import { useSidebar } from '../composables/useSidebar'
 import { RouterLink } from 'vue-router';
-
+import store from "../store";
+import router from '../router'
 const dropdownOpen = ref(false)
-const { isOpen } = useSidebar()
+const { isOpen } = useSidebar();
+const firebaseUser = computed(() => {
+  return store.state.firebaseUser;
+});
+const logout = async () => {
+  await store.dispatch('logout');
+  router.push('/');
+}
 </script>
 
 <template>
@@ -37,9 +45,9 @@ const { isOpen } = useSidebar()
       </div>
     </div>
     <div class="flex items-center gap-5">
-      <router-link to="/free_trial">Sign up</router-link>
-      <router-link to="/login">Login</router-link>
-      <div class="relative">
+      <router-link to="/free_trial" v-if="!firebaseUser">Sign up</router-link>
+      <router-link to="/login" v-if="!firebaseUser">Login</router-link>
+      <div class="relative" v-if="firebaseUser">
         <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
           @click="dropdownOpen = !dropdownOpen"
           src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=296&q=80"
@@ -54,9 +62,10 @@ const { isOpen } = useSidebar()
           <div v-show="dropdownOpen" class="absolute right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl">
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Products</a>
-            <router-link to="/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+              @click="logout">
               Log out
-            </router-link>
+            </a>
           </div>
         </transition>
       </div>

@@ -5,6 +5,7 @@ import { auth } from '../../firebase';
 import store from '../../store';
 import router from "../../router"
 import { NO_PASSWORD_MATCH } from '../../utilities/constants';
+import { createDocument } from '../../firebase/firestore';
 const email = ref();
 const password = ref();
 const confirmPass = ref();
@@ -18,7 +19,16 @@ const signWithGoogle = async () => {
     isSigningUp.value = true;
     try {
         let result = await signInWithPopup(auth, googleProvider);
-        console.log("auth.currentUser ", result);
+        const userData = {
+            accept: accept.value,
+            name: auth.currentUser.displayName,
+            email: auth.currentUser.email,
+            emailVerified: auth.currentUser.emailVerified,
+            phoneNumber: auth.currentUser.phoneNumber ?? "",
+            photoURL: auth.currentUser.photoURL,
+            uid: auth.currentUser.uid
+        };
+        await createDocument('Users', userData);
         store.dispatch('setUser', auth.currentUser).then((val) => {
             router.push('/courses');
             console.log(val); /// create new User
@@ -36,13 +46,15 @@ const signup = async () => {
         try {
             const result = await createUserWithEmailAndPassword(auth, email.value, password.value);
             const userData = {
-                ...auth.currentUser,
-                firstName: this.register_form.firstName,
-                lastName: this.register_form.lastName,
-                alertStudent: this.register_form.alertStudent,
-                alertInstructor: this.register_form.alertInstructor,
-                roleId: this.register_form.alertInstructor ? 2 : 1
+                accept: accept.value,
+                name: auth.currentUser.displayName,
+                email: auth.currentUser.email,
+                emailVerified: auth.currentUser.emailVerified,
+                phoneNumber: auth.currentUser.phoneNumber ?? "",
+                photoURL: auth.currentUser.photoURL,
+                uid: auth.currentUser.uid
             };
+            await createDocument('Users', userData);
             await store.dispatch('setUser', auth.currentUser);
             await router.push('/courses');;
             // create new User

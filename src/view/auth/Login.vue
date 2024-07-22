@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { ref } from 'vue';
 import { auth } from '../../firebase';
 import router from '../../router';
+import store from '../../store';
 
 const userName = ref('');
 const password = ref('');
@@ -15,9 +16,8 @@ const login = async () => {
     isLoading.value = true;
     try {
         signInWithEmailAndPassword(auth, userName.value, password.value).then((user) => {
-            stores.dispatch('setUser', user.user).then((val) => {
-                router.push('/');
-                console.log(val);
+            store.dispatch('setUser', user.user).then((val) => {
+                window.location.href = '/'
             });
             isLoading.value = false;
         }).catch(error => {
@@ -50,15 +50,6 @@ const login = async () => {
 </script>
 
 <template>
-    <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full bg-white">
-    <body class="h-full">
-    ```
-  -->
-
     <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <svg class=" mx-auto w-12 h-12" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">

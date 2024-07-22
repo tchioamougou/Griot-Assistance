@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import { createStore } from "vuex";
 import VuexPersist from "vuex-persist";
 import { auth } from "../firebase";
+import { retrieveDataWithFilter } from "../firebase/firestore";
 
 const vuexLocalStorage = new VuexPersist({
     key: "vuex", // The key to store the state on in the storage provider.
@@ -27,8 +28,16 @@ export default createStore({
         setLanguage(state, language) {
             state.language = language;
         },
-        setUser(state, user) {
+        async setUser(state, user) {
             state.firebaseUser = user;
+            console.log('user', user);
+            const filter = {
+                field: "uid",
+                operator: "==",
+                value: user.uid
+            }
+            const doc = await (retrieveDataWithFilter('Users', filter, null));
+            state.user = doc[0];
         },
         async logout(state) {
             await signOut(auth);

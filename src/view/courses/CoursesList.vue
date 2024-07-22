@@ -1,14 +1,14 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
-import DashboardLayout from '../../components/DashboardLayout.vue';
 import Modal from '../../components/Modal.vue';
 import { model } from '../../gemini';
 import CourseItem from './CourseItem.vue';
 import CourseDetail from './CourseDetail.vue';
+import { createDocument, retrieveDataWithFilter } from '../../firebase/firestore';
+import store from '../../store';
 const addingNew = ref(false);
 const isFetching = ref(false);
 const courseTitle = ref('');
-const courseDescription = ref('');
 const course = ref('');
 const finalStructure = ref([]);
 const listeCourse = ref([]);
@@ -43,21 +43,25 @@ const fetching = async () => {
     console.log(course.value)
     finalStructure.value = JSON.parse(course.value);
     const courseNew = {
-        title: courseTitle,
+        title: courseTitle.value,
         modules: finalStructure.value
     }
     listeCourse.value.push(courseNew);
-    localStorage.setItem('courses', JSON.stringify(listeCourse.value));
+    await createDocument('Users/' + store.state.firebaseUser.uid + '/Courses', courseNew)
     console.log(finalStructure);
 }
 
-onBeforeMount(() => {
-    const cs = localStorage.getItem('courses');
-    listeCourse.value = cs ? JSON.parse(cs) : [];
+onBeforeMount(async () => {
+    const cs = await retrieveDataWithFilter(`Users/${store.state.firebaseUser.uid}/Courses`)
+    listeCourse.value = cs ? cs : [];
 });
 const onPreview = (cs) => {
     selectCourse.value = cs;
     isDetails.value = true;
+}
+const onGoBack = () => {
+    selectCourse.value = false;
+    isDetails.value = false;
 }
 </script>
 <template>
@@ -90,6 +94,6 @@ const onPreview = (cs) => {
         </form>
     </template>
     <template v-else>
-        <CourseDetail :course="selectCourse"></CourseDetail>
+        <CourseDetail :course="selectCourse" @go-back="onGoBack"></CourseDetail>
     </template>
 </template>
