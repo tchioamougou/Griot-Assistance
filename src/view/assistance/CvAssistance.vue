@@ -46,12 +46,8 @@ const analyseCv = async (event) => {
 
 <template>
     <div>
-        <DashboardLayout>
-            <template v-slot:default>
-                <input type="file" @change="analyseCv" />
-                <div class="" v-html="res"></div>
-            </template>
-        </DashboardLayout>
+        <input type="file" @change="analyseCv" />
+        <div class="" v-html="res"></div>
     </div>
 </template>
 

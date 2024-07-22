@@ -16,18 +16,14 @@ const learn = (course) => {
 
 <template>
     <div>
-        <DashboardLayout>
-            <template v-slot:default>
-                <div class="flex flex-wrap justify-center gap-5" v-if="!isLearning">
-                    <template v-for="(it, i) in itemsLearning">
-                        <div class="w-3/12">
-                            <LearningForm :item="it" @detail="learn" />
-                        </div>
-                    </template>
+        <div class="flex flex-wrap justify-center gap-5" v-if="!isLearning">
+            <template v-for="(it, i) in itemsLearning">
+                <div class="w-3/12">
+                    <LearningForm :item="it" @detail="learn" />
                 </div>
-                <LearningPlay :course="selectedCourse" v-else></LearningPlay>
             </template>
-        </DashboardLayout>
+        </div>
+        <LearningPlay :course="selectedCourse" v-else></LearningPlay>
     </div>
 </template>
 

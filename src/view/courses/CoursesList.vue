@@ -61,39 +61,35 @@ const onPreview = (cs) => {
 }
 </script>
 <template>
-    <DashboardLayout>
-        <template v-slot:default>
-            <template v-if="!isDetails">
-                <div class="flex justify-end">
-                    <button @click="addingNew = true"
-                        class="px-6 py-3 mt-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none">
-                        New course
-                    </button>
-                </div>
-                <div class="mt-5 w-full">
-                    <template v-for="(cs, i) in listeCourse">
-                        <course-item :course="cs" @preview="onPreview(cs)"></course-item>
-                    </template>
-                </div>
-                <form @submit.prevent="fetching">
-                    <Modal v-if="addingNew" @cancel="addingNew = false" :label="'Generate'">
-                        <template v-slot:title>Generate a new course structure</template>
-                        <template v-slot:content>
-                            <div class="mb-6">
-                                <label for="large-input"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course
-                                    title</label>
-                                <input type="text" id="large-input" v-model="courseTitle" required
-                                    class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            </div>
-                            <label for="course title"></label>
-                        </template>
-                    </Modal>
-                </form>
+    <template v-if="!isDetails">
+        <div class="flex justify-end">
+            <button @click="addingNew = true"
+                class="px-6 py-3 mt-3 font-medium tracking-wide text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none">
+                New course
+            </button>
+        </div>
+        <div class="mt-5 w-full">
+            <template v-for="(cs, i) in listeCourse">
+                <course-item :course="cs" @preview="onPreview(cs)"></course-item>
             </template>
-            <template v-else>
-                <CourseDetail :course="selectCourse"></CourseDetail>
-            </template>
-        </template>
-    </DashboardLayout>
+        </div>
+        <form @submit.prevent="fetching">
+            <Modal v-if="addingNew" @cancel="addingNew = false" :label="'Generate'">
+                <template v-slot:title>Generate a new course structure</template>
+                <template v-slot:content>
+                    <div class="mb-6">
+                        <label for="large-input"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course
+                            title</label>
+                        <input type="text" id="large-input" v-model="courseTitle" required
+                            class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </div>
+                    <label for="course title"></label>
+                </template>
+            </Modal>
+        </form>
+    </template>
+    <template v-else>
+        <CourseDetail :course="selectCourse"></CourseDetail>
+    </template>
 </template>

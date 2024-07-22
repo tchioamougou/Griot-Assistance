@@ -4,11 +4,7 @@ import DashboardLayout from '../../components/DashboardLayout.vue';
 
 <template>
     <div>
-        <DashboardLayout>
-            <template v-slot:default>
-                Interview List
-            </template>
-        </DashboardLayout>
+        Interview List
     </div>
 </template>
 

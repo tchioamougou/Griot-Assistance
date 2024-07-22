@@ -99,7 +99,7 @@ const items = ref([{
 
       <nav class="mt-10 ps-5">
         <router-link v-for="(it, i) in items" :key="i" class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
-          :class="[$route.name === it.name ? activeClass : activeClass]" :to="it.link">
+          :class="$route.name === it.name ? activeClass : inactiveClass" :to="it.link">
           <span v-html="it.icon"></span>
           <span class="mx-4">{{ it.label }}</span>
         </router-link>

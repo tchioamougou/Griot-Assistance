@@ -40,6 +40,22 @@ const routes = [
             title: ' Dashboard'
         }
     },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('../view/auth/Login.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+    {
+        path: '/free_trial',
+        name: 'free_trial',
+        component: () => import('../view/auth/Price.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
 ]
 
 const router = createRouter({
