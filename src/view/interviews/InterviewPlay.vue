@@ -2,6 +2,8 @@
 import { onBeforeMount, onMounted, ref } from 'vue';
 import { model } from '../../gemini';
 import { convertText } from '../../utilities';
+import RecordingBtn from '../../components/audio/RecordingBtn.vue';
+import { textTopSpeech } from '../../utilities/speech';
 
 
 const chat = ref(model.startChat({
@@ -27,8 +29,10 @@ s'il repond start tu commences a poser la premiere question
     const response = result.response;
     canvas.value = convertText(response.text());
     chatMessages.value.push({ user: "boot", message: canvas.value });
+    textTopSpeech(canvas.value)
 };
 const sendResponse = async () => {
+    console.log('response')
     isLoanding.value = true;
     chatMessages.value.push({ user: "you", message: search.value });
     const result = await chat.value.sendMessage(
@@ -37,8 +41,28 @@ const sendResponse = async () => {
     const response = result.response;
     canvas.value = convertText(response.text());
     chatMessages.value.push({ user: "boot", message: canvas.value });
+    textTopSpeech(canvas.value)
     search.value = '';
     isLoanding.value = false;
+}
+const generateText = async (file) => {
+    isLoanding.value = true;
+    const promps = 'voici ma response a la question'
+    const result = await chat.value.sendMessage(
+        [promps, {
+            inlineData: {
+                data: file.base64,
+                mimeType: file.mimeType
+            }
+        },]
+    );
+    const response = result.response;
+    canvas.value = convertText(response.text());
+    chatMessages.value.push({ user: "boot", message: canvas.value });
+    search.value = '';
+    textTopSpeech(canvas.value)
+    isLoanding.value = false;
+
 }
 const props = defineProps({
     title: String,
@@ -97,7 +121,8 @@ onMounted(() => {
             <form @submit.prevent="sendResponse" class="flex items-center justify-center w-full space-x-2">
                 <input :disabled="isLoanding"
                     class="flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] disabled:cursor-not-allowed disabled:opacity-50 text-[#030712] focus-visible:ring-offset-2"
-                    placeholder="Type your message" v-model="search">
+                    placeholder="Type your message" v-model="search" />
+                <RecordingBtn @finish="generateText"></RecordingBtn>
                 <button :disabled="isLoanding"
                     class="inline-flex items-center justify-center rounded-md text-sm font-medium text-[#f9fafb] disabled:pointer-events-none disabled:opacity-50 bg-black hover:bg-[#111827E6] h-10 px-4 py-2">
                     <span v-if="!isLoanding">Send</span>
