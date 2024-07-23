@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
 import Modal from '../../components/Modal.vue';
-import { model } from '../../gemini';
+import { model, modelJson } from '../../gemini';
 import CourseItem from './CourseItem.vue';
 import CourseDetail from './CourseDetail.vue';
 import { createDocument, retrieveDataWithFilter } from '../../firebase/firestore';
@@ -30,7 +30,7 @@ const fetching = async () => {
     `
     isFetching.value = true;
     addingNew.value = false;
-    const result = await model.generateContentStream(promps);
+    const result = await modelJson.generateContentStream(promps);
     let text = ""
     for await (const chunk of result.stream) {
         const chunkText = chunk.text();
