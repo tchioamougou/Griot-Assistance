@@ -1,19 +1,29 @@
 <script setup>
 import { ref } from 'vue'
 import { useSidebar } from '../composables/useSidebar'
-
+import { useSidebarStore } from './../store/sidebar'
+import { onClickOutside } from '@vueuse/core';
 const { isOpen } = useSidebar()
-const activeClass = ref(
-  'bg-gray-600 bg-opacity-25 text-gray-100 border-gray-100',
-)
-const inactiveClass = ref(
-  'border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100',
-);
+const sidebarStore = useSidebarStore()
+
+const target = ref(null)
+
+onClickOutside(target, () => {
+  sidebarStore.isSidebarOpen = false
+});
+
+const handleItemClick = (item) => {
+  console.log('this is the item', item);
+  const pageName = sidebarStore.page === item.label ? '' : item.label
+  sidebarStore.page = pageName;
+  console.log('sidebarStore', pageName)
+}
+
 const items = ref([{
   label: "Courses",
   link: "/courses",
   name: "courses",
-  icon: `<svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  icon: `<svg class="w-6 h-6" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 10C2 5.58172 5.58172 2 10 2V10H18C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10Z"
               fill="currentColor" />
             <path d="M12 2.25195C14.8113 2.97552 17.0245 5.18877 17.748 8.00004H12V2.25195Z" fill="currentColor" />
@@ -24,7 +34,7 @@ const items = ref([{
   label: "Learning",
   link: "/learning",
   name: "learning",
-  icon: `<svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  icon: `<svg class="w-6 h-6" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M7 3C6.44772 3 6 3.44772 6 4C6 4.55228 6.44772 5 7 5H13C13.5523 5 14 4.55228 14 4C14 3.44772 13.5523 3 13 3H7Z"
               fill="currentColor" />
@@ -52,7 +62,7 @@ const items = ref([{
   label: "CV Assistance",
   link: "/cv_assistance",
   name: "courses",
-  icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+  icon: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
             <path
               d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
           </svg>
@@ -62,7 +72,7 @@ const items = ref([{
   label: "Interview training",
   link: "/interviews",
   name: "interviews",
-  icon: `          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+  icon: `          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
             <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" />
             <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" />
             <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" />
@@ -80,11 +90,11 @@ const items = ref([{
       class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden" @click="isOpen = false" />
     <!-- End Backdrop -->
 
-    <div :class="isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
-      class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-graydark lg:translate-x-0 lg:static lg:inset-0">
+    <div ref="target" :class="isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
+      class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-black lg:translate-x-0 lg:static  dark:bg-boxdark lg:inset-0">
       <div class="flex items-center justify-center mt-8">
         <div class="flex items-center">
-          <svg class="w-12 h-12" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-15 h-18" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M364.61 390.213C304.625 450.196 207.37 450.196 147.386 390.213C117.394 360.22 102.398 320.911 102.398 281.6C102.398 242.291 117.394 202.981 147.386 172.989C147.386 230.4 153.6 281.6 230.4 307.2C230.4 256 256 102.4 294.4 76.7999C320 128 334.618 142.997 364.608 172.989C394.601 202.981 409.597 242.291 409.597 281.6C409.597 320.911 394.601 360.22 364.61 390.213Z"
               fill="#4C51BF" stroke="#4C51BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -96,13 +106,17 @@ const items = ref([{
           <span class="mx-2 text-2xl font-semibold text-white">Griot Assistance</span>
         </div>
       </div>
-
       <nav class="mt-10 ps-5">
-        <router-link v-for="(it, i) in items" :key="i" class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
-          :class="$route.name === it.name ? activeClass : inactiveClass" :to="it.link">
-          <span v-html="it.icon"></span>
-          <span class="mx-4">{{ it.label }}</span>
-        </router-link>
+        <div class="mb-6 flex flex-col gap-1.5">
+          <router-link v-for="(it, i) in items" :key="i" @click.prevent="handleItemClick(it)" :to="it.link"
+            class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+            :class="{
+              'bg-graydark dark:bg-meta-4': sidebarStore.page === it.label
+            }">
+            <span v-html="it.icon"></span>
+            <span class="mx-4">{{ it.label }}</span>
+          </router-link>
+        </div>
       </nav>
     </div>
   </div>

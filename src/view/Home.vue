@@ -1,6 +1,9 @@
 <template>
     <RecordingBtn @finish="generateText" />
     {{ base64 }}
+    <audio controls v-if="fileAudio">
+        <source :src="fileAudio" type="audio/ogg">
+    </audio>
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';
@@ -15,9 +18,11 @@ const readfile = (FileObject) => {
         reader.readAsDataURL(FileObject);
     });
 };
+const fileAudio = ref();
 const generateText = async (file) => {
     base64.value = file;
-    // mimeType.value = blob.type.split(';')[0]
+    fileAudio.value = file.audioURL;
+    console.log('audioURL', file.audioURL)
 }
 onMounted(() => {
     textTopSpeech("je suis un developpeur salesforce depuis 2015");

@@ -50,7 +50,7 @@ const login = async () => {
 </script>
 
 <template>
-    <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8  dark:bg-boxdark">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <svg class=" mx-auto w-12 h-12" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -60,7 +60,8 @@ const login = async () => {
                     d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z"
                     fill="white" />
             </svg>
-            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to
+            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">Sign
+                in to
                 your
                 account</h2>
         </div>
@@ -71,27 +72,29 @@ const login = async () => {
             </div>
             <form class="space-y-6" action="#" method="POST" @submit.prevent="login">
                 <div>
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Email
                         address</label>
                     <div class="mt-2">
                         <input id="email" name="email" type="email" autocomplete="email" required="" v-model="userName"
                             placeholder="styves@gmail.com"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            class=" dark:bg-black block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
 
                 <div>
                     <div class="flex items-center justify-between">
-                        <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                        <label for="password"
+                            class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Password</label>
                         <div class="text-sm">
-                            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot
+                            <a href="#"
+                                class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-white">Forgot
                                 password?</a>
                         </div>
                     </div>
                     <div class="mt-2">
                         <input id="password" name="password" type="password" autocomplete="current-password" required=""
                             v-model="password"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            class=" dark:bg-black block w-full dark:text-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
 
@@ -112,7 +115,7 @@ const login = async () => {
                 </div>
             </form>
 
-            <p class="mt-10 text-center text-sm text-gray-500">
+            <p class="mt-10 text-center text-sm text-gray-500 dark:text-white">
                 Not a member?
                 {{ ' ' }}
                 <a href="/free_trial" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14

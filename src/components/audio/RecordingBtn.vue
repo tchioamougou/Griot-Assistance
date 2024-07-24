@@ -17,8 +17,9 @@ const mediaManage = (event) => {
             let audioBlob = new Blob(chunks.value, { type: 'audio/ogg' });
             console.log('audioBlob', audioBlob);
             const base64 = (await (readfile(audioBlob))).split(',')[1];
-            const mimeType = audioBlob.type.split(';')[0]
-            emits('finish', { audioBlob, base64: base64, mimeType: mimeType });
+            const mimeType = audioBlob.type.split(';')[0];
+            const audioURL = URL.createObjectURL(audioBlob);
+            emits('finish', { audioBlob, base64: base64, mimeType: mimeType, audioURL });
             isRecording.value = false;
         }
         recorder.value.start();
@@ -41,7 +42,7 @@ const readfile = (FileObject) => {
         <button id="startRecording" v-if="!isRecording" @click="mediaManage" type="button"
             class="bg-transparent border-none focus:decoration-transparent focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="size-6">
+                stroke="currentColor" class="size-6 dark:text-white">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
             </svg>
