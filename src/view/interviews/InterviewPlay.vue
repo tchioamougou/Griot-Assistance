@@ -92,7 +92,6 @@ onMounted(() => {
 
 <template>
     <div class="right-0 mr-4 bg-white p-6 rounded-lg border border-[#e5e7eb] dark:bg-boxdark dark:border-boxdark">
-
         <!-- Heading -->
         <div class="flex flex-col space-y-1.5 pb-6">
             <h2 class="font-semibold text-lg tracking-tight dark:text-white">Interview: {{ title }}</h2>

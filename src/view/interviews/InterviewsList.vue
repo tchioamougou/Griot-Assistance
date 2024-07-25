@@ -18,6 +18,17 @@ const endChat = () => {
 <template>
     <div>
         <template v-if="!isChating">
+            <div class=" text-center dark:bg-boxdark dark:py-5">
+                <div>
+                    <h1
+                        class=" h-20 bg-gradient-to-r from-purple-700 via-indigo-600 to-indigo-400 inline-block text-transparent bg-clip-text font-bold text-6xl w-6/12">
+                        Bonjour styves daudet</h1>
+                </div>
+                <div
+                    class="bg-gradient-to-r from-gray via-gray to-gray inline-block text-transparent bg-clip-text font-bold text-5xl w-5/12">
+                    De quoi avez-vous besoin aujourd'hui ?
+                </div>
+            </div>
             <div class="flex flex-wrap justify-center gap-5 dark:bg-boxdark dark:py-5">
                 <form class="w-9/12" @submit.prevent="generateLearning">
                     <div class="mb-6">
