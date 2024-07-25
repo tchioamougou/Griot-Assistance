@@ -8,11 +8,50 @@ const routes = [
             title: ' Dashboard'
         }
     },
-
     {
         path: '/courses',
         name: 'courses',
         component: () => import('../view/courses/CoursesList.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+    {
+        path: '/learning',
+        name: 'learning',
+        component: () => import('../view/learning/LearningList.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+    {
+        path: '/cv_assistance',
+        name: 'cv_assistance',
+        component: () => import('../view/assistance/CvAssistance.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+    {
+        path: '/interviews',
+        name: 'interviews',
+        component: () => import('../view/interviews/InterviewsList.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('../view/auth/Login.vue'),
+        meta: {
+            title: ' Dashboard'
+        }
+    },
+    {
+        path: '/free_trial',
+        name: 'free_trial',
+        component: () => import('../view/auth/Price.vue'),
         meta: {
             title: ' Dashboard'
         }

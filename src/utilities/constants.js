@@ -1,0 +1,1 @@
+export const NO_PASSWORD_MATCH = 'les mot de pass ne sont pas mes ùeùe';

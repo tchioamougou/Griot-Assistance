@@ -1,6 +1,7 @@
 <script setup>
-import Sidebar from './Sidebar.vue'
-import Header from './Header.vue'
+import { defineAsyncComponent } from 'vue';
+const Sidebar = defineAsyncComponent(() => import('./Sidebar.vue'));
+const Header = defineAsyncComponent(() => import('./Header.vue'));
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import Header from './Header.vue'
       <Header />
 
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-        <div class="container mx-auto px-6 py-8">
+        <div class="container mx-auto px-6 py-8 dark:bg-black h-full">
           <slot />
         </div>
       </main>

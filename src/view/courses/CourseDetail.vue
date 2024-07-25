@@ -1,6 +1,12 @@
 <template>
     <div class="lg:container lg:mx-auto lg:py-16 md:py-12 md:px-6 py-12 px-4">
         <h1 class="font-bold mb-10">Course title: {{ course.title }}</h1>
+        <div class="flex justify-end gap-4 mb-2">
+            <button class="bg-gray-2" @click="goBack">Go back</button>
+            <button class="bg-red text-white">Delete</button>
+            <button class="bg-primary text-white">Export pdf</button>
+            <button class="bg-primary text-white">Export as json</button>
+        </div>
         <div class="lg:w-12/12 w-full mx-auto mb-8 shadow-9 py-3" v-for="(mod, i) in course.modules">
             <div class="w-full md:px-6">
                 <div id="mainHeading" class="flex justify-between items-center w-full">
@@ -84,6 +90,10 @@ const props = defineProps({
         required: true
     }
 })
+const emits = defineEmits(['go-back'])
+const goBack = () => {
+    emits('go-back');
+}
 onMounted(() => {
     let elements = document.querySelectorAll("[data-menu]");
     for (let i = 0; i < elements.length; i++) {
