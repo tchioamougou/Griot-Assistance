@@ -5,14 +5,14 @@ const Header = defineAsyncComponent(() => import('./Header.vue'));
 </script>
 
 <template>
-  <div class="flex h-screen bg-gray-200 font-roboto">
+  <div class="flex h-screen  dark:bg-black  bg-white text-black font-roboto">
     <Sidebar />
 
     <div class="flex-1 flex flex-col overflow-hidden">
       <Header />
 
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-        <div class="container mx-auto px-6 py-8 dark:bg-black h-full bg-white text-black">
+        <div class="container mx-auto px-6 py-8">
           <slot />
         </div>
       </main>

@@ -5,6 +5,7 @@ import { RouterLink } from 'vue-router';
 import store from "../store";
 import router from '../router'
 import DarkModeSwitcher from './header/DarkModeSwitcher.vue';
+import LanguageButton from './header/LanguageButton.vue';
 const dropdownOpen = ref(false)
 const { isOpen } = useSidebar();
 const firebaseUser = computed(() => {
@@ -20,6 +21,7 @@ const logout = async () => {
   <header class="flex items-center gap-8 justify-end px-6 py-4 bg-white border-b-4 border-indigo-600 dark:bg-boxdark">
     <DarkModeSwitcher />
     <div class="flex items-center gap-5">
+      <LanguageButton />
       <router-link to="/free_trial" v-if="!firebaseUser">Sign up</router-link>
       <router-link to="/login" v-if="!firebaseUser">Login</router-link>
       <div class="relative" v-if="firebaseUser">
@@ -34,6 +36,7 @@ const logout = async () => {
           enter-from-class="scale-95 opacity-0" enter-to-class="scale-100 opacity-100"
           leave-active-class="transition duration-150 ease-in transform" leave-from-class="scale-100 opacity-100"
           leave-to-class="scale-95 opacity-0">
+
           <div v-show="dropdownOpen" class="absolute right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl">
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Products</a>

@@ -12,9 +12,12 @@
     "@google/generative-ai": "^0.15.0",
     "@vueuse/core": "^10.11.0",
     "buffer": "^6.0.3",
+    "cors": "^2.8.5",
     "firebase": "^10.12.4",
+    "pdfmake": "^0.2.10",
     "pinia": "^2.1.7",
     "vue": "^3.4.31",
+    "vue-i18n": "^9.13.1",
     "vue-router": "^4.4.0",
     "vuex": "^4.0.2",
     "vuex-persist": "^3.1.3"

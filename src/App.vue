@@ -1,9 +1,17 @@
 <script setup>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, onBeforeMount } from 'vue';
 import ChatBot from './view/ChatBot.vue';
-import ChatCv from './view/ChatCv.vue';
 const DashboardLayout = defineAsyncComponent(() => import('./components/DashboardLayout.vue'))
-ChatCv
+import { useI18n } from "vue-i18n";
+import stores from './store';
+const t = useI18n({ useScope: "global" });
+onBeforeMount(() => {
+  if (!stores.state.language) {
+    stores.dispatch('setLanguage', t.locale.value);
+  } else {
+    t.locale.value = stores.state.language;
+  }
+})
 </script>
 
 <template>

@@ -13,7 +13,6 @@ onClickOutside(target, () => {
 });
 
 const handleItemClick = (item) => {
-  console.log('this is the item', item);
   const pageName = sidebarStore.page === item.label ? '' : item.label
   sidebarStore.page = pageName;
   console.log('sidebarStore', pageName)
@@ -107,7 +106,7 @@ const items = ref([{
               'bg-graydark dark:bg-meta-4': sidebarStore.page === it.label
             }">
             <span v-html="it.icon"></span>
-            <span class="mx-4">{{ it.label }}</span>
+            <span class="mx-4">{{ $t(it.label) }}</span>
           </router-link>
         </div>
       </nav>

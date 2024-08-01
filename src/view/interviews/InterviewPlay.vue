@@ -1,12 +1,15 @@
 <script setup>
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, onMounted, ref } from 'vue';
 import { model } from '../../gemini';
 import { convertText } from '../../utilities';
 import RecordingBtn from '../../components/audio/RecordingBtn.vue';
 import { textTopSpeech } from '../../utilities/speech';
 import AudioPlaySwitcher from '../../components/audio/AudioPlaySwitcher.vue';
 import { useAudioStore } from '../../store/audio';
-import { INTERVIEW_ENTER, INTERVIEW_ERROR } from '../../utilities/constants';
+import { INTERVIEW_ENTER, INTERVIEW_ENTER_ENG, INTERVIEW_ERROR } from '../../utilities/constants';
+import { useI18n } from "vue-i18n";
+import store from '../../store';
+const { t } = useI18n();
 
 
 const chat = ref(model.startChat({
@@ -15,10 +18,13 @@ const search = ref('');
 const isLoanding = ref(false);
 const chatMessages = ref([]);
 const canvas = ref('');
+const language = computed(() => {
+    return store.state.language
+})
 const generateLearning = async () => {
     isLoanding.value = true;
     try {
-        const prompt = INTERVIEW_ENTER(props.title, props.description);
+        const prompt = language.value === 'fr' ? INTERVIEW_ENTER(props.title, props.description) : INTERVIEW_ENTER_ENG(props.title, props.description);
         const result = await chat.value.sendMessage(
             prompt
         );
@@ -29,9 +35,9 @@ const generateLearning = async () => {
             textTopSpeech(canvas.value)
         }
     } catch (error) {
-        chatMessages.value.push({ user: "boot", message: chatMessages.value.push({ user: "boot", message: INTERVIEW_ERROR }) });
+        chatMessages.value.push({ user: "boot", message: chatMessages.value.push({ user: "boot", message: t(INTERVIEW_ERROR) }) });
         if (audioStore.audioPlay) {
-            textTopSpeech(INTERVIEW_ERROR)
+            textTopSpeech(t(INTERVIEW_ERROR))
         }
     } finally {
         isLoanding.value = false;
@@ -52,7 +58,10 @@ const sendResponse = async () => {
         }
         search.value = '';
     } catch (error) {
-        chatMessages.value.push({ user: "boot", message: INTERVIEW_ERROR });
+        chatMessages.value.push({ user: "boot", message: t(INTERVIEW_ERROR) });
+        if (audioStore.audioPlay) {
+            textTopSpeech(t(INTERVIEW_ERROR))
+        }
     } finally {
         isLoanding.value = false;
     }
@@ -60,7 +69,7 @@ const sendResponse = async () => {
 const generateText = async (file) => {
     isLoanding.value = true;
     try {
-        const promps = 'voici ma response a la question';
+        const promps = t(this_is_my_response);
         chatMessages.value.push({ user: "you", type: "audio", link: file.audioURL, message: canvas.value });
         const result = await chat.value.sendMessage(
             [promps, {
@@ -79,7 +88,10 @@ const generateText = async (file) => {
         }
         isLoanding.value = false;
     } catch (error) {
-        chatMessages.value.push({ user: "boot", message: INTERVIEW_ERROR });
+        chatMessages.value.push({ user: "boot", message: t(INTERVIEW_ERROR) });
+        if (audioStore.audioPlay) {
+            textTopSpeech(t(INTERVIEW_ERROR))
+        }
     } finally {
         isLoanding.value = false;
     }
@@ -99,8 +111,10 @@ const audioStore = useAudioStore();
         <!-- Heading -->
         <div class="flex justify-between">
             <div class="flex flex-col space-y-1.5 pb-6">
-                <h2 class="font-semibold text-lg tracking-tight dark:text-white">Interview: {{ title }}</h2>
-                <p class="text-sm text-[#6b7280] leading-3">Powered by Griot</p>
+                <h2 class="font-semibold text-lg tracking-tight dark:text-white">{{ $t('interview_title') }}: {{ title
+                    }}
+                </h2>
+                <p class="text-sm text-[#6b7280] leading-3">{{ $t('powered_by_griot') }}</p>
             </div>
             <AudioPlaySwitcher>
 
@@ -137,7 +151,7 @@ const audioStore = useAudioStore();
                                 </path>
                             </svg></div>
                     </span>
-                    <p class="leading-relaxed"><span class="block font-bold text-gray-700">You </span>
+                    <p class="leading-relaxed"><span class="block font-bold text-gray-700">{{ $t('you') }} </span>
                         <template v-if="ch.type === 'audio'">
                             <audio controls>
                                 <source :src="ch.link" type="audio/ogg">
@@ -177,11 +191,11 @@ const audioStore = useAudioStore();
             <form @submit.prevent="sendResponse" class="flex items-center justify-center w-full space-x-2">
                 <input :disabled="isLoanding"
                     class="dark:bg-black dark:text-white dark:border-boxdark flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] disabled:cursor-not-allowed disabled:opacity-50 text-[#030712] focus-visible:ring-offset-2"
-                    placeholder="Type your message" v-model="search" />
+                    :placeholder="$t('type_response')" v-model="search" />
                 <RecordingBtn @finish="generateText"></RecordingBtn>
                 <button :disabled="isLoanding"
                     class="inline-flex items-center justify-center rounded-md text-sm font-medium text-[#f9fafb] disabled:pointer-events-none disabled:opacity-50 bg-black hover:bg-[#111827E6] h-10 px-4 py-2">
-                    <span v-if="!isLoanding">Send</span>
+                    <span v-if="!isLoanding">{{ $t('responds') }}</span>
                     <div v-else class="w-5 h-5 rounded-full animate-spin 
                     border-2 b order-dashed border-blue-500 border-t-transparent"></div>
 

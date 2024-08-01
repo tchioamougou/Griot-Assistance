@@ -1,9 +1,9 @@
 <template>
-    <div class="flex justify-between">
-        <div>
-            <div v-html="res"></div>
+    <div class="flex justify-between dark:bg-boxdark dark:text-white">
+        <div class="py-10 px-10">
+            <div v-html="res" class="dark:text-white"></div>
         </div>
-        <div class="flex justify-end">
+        <div class="flex justify-end" v-if="localCourse">
             <SideCourseLeft :course="localCourse" @lesson="onLesson" />
         </div>
     </div>
@@ -11,14 +11,15 @@
 </template>
 <script setup>
 // Converts local file information to a GoogleGenerativeAI.Part object.
-import { model } from '../../gemini';
+import { model, modelJson } from '../../gemini';
 import { convertirTexteEnHTML } from '../../utilities';
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, onMounted, ref } from 'vue';
 import SideCourseLeft from '../../components/SideCourseLeft.vue';
+import { LEARN_ENTER_ENG, LEARN_ENTER_FR } from '../../utilities/constants';
+import store from '../../store';
 const props = defineProps({
     course: {
         type: Object,
-        required: true,
     }
 });
 const listLearning = ref([]);
@@ -48,7 +49,9 @@ const getLessons = async (lesson) => {
     Teach me more about this and give me example
     This is The Curreent Lesson Title ${lesson.title} I'am following, 
     this is the description of the lessons : ${lesson.description},
-    And this is the goal of the Lecons:${lesson.goals}.
+    And this is the goal of the Lecons:${lesson.goals}. 
+
+    give the response in thml code page inside a div
     `
     const result = await (model.generateContentStream(prompt));
     let text = '';
@@ -60,34 +63,12 @@ const getLessons = async (lesson) => {
     }
     res.value = res.value;
 }
-
+const language = computed(() => {
+    return store.state.language
+})
 const getCourse = async () => {
-
-    const prompt = `
-    Hi Iam Styves, I want to learn ${props.course.tile}, 
-    this is the description of the course : ${props.course.description},
-    I want a course of a level:${props.course.level}.
-    First propse to me propse to me all the Module a lessons with there description and goall that we have to learn. 
-    First return the programme in the json Format Like this: 
-
-    {
-    "title": "course title",
-    "Description":"course description",
-    "level": 'level of the course',
-    "time":'time to finisched the course',
-    modules:[{
-    title:"",
-    decription:'',
-    goal:"",
-    lessons:[{
-     title:"",
-    decription:'',
-    goal:"",
-    }]
-    }]
-    }
-    `
-    const result = await (model.generateContentStream(prompt));
+    const prompt = language.value === 'fr' ? LEARN_ENTER_FR(props.course.title, props.course.description) : LEARN_ENTER_ENG(props.course.title, props.course.description);
+    const result = await (modelJson.generateContentStream(prompt));
     let text = '';
     for await (const chunk of result.stream) {
         const chunkText = chunk.text();
@@ -95,19 +76,20 @@ const getCourse = async () => {
         text += chunkText;
         res.value = convertirTexteEnHTML(text);
     }
-    res.value = res.value.split('```')[1].replace('json', "");
-    listLearning.value.push(JSON.parse(res.value));
-    localStorage.setItem('leanings', JSON.stringify(listLearning.value));
-
+    localCourse.value = JSON.parse(res.value);
 }
 onBeforeMount(() => {
-    const cs = localStorage.getItem('leanings');
-    listLearning.value = cs ? JSON.parse(cs) : [];
-    localCourse.value = listLearning.value?.[1];
-    console.log('cs', localCourse.value)
+    /*  const cs = localStorage.getItem('leanings');
+      if (props.course) {
+      } else {
+          getCourse();
+      }
+      listLearning.value = cs ? JSON.parse(cs) : [];
+      localCourse.value = listLearning.value?.[1];
+      console.log('cs', localCourse.value)*/
 });
 onMounted(() => {
-    // getCourse();
+    getCourse();
 })
 </script>
 <style scoped></style>

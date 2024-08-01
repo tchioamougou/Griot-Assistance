@@ -74,7 +74,7 @@ const signup = async () => {
         }
     } else {
         isError.value = true;
-        errorMessage = NO_PASSWORD_MATCH;
+        errorMessage.value = NO_PASSWORD_MATCH;
     }
 }
 </script>
