@@ -1,0 +1,23 @@
+{
+  "login": "login",
+  "Describe more (optional)": "Describe more (optional)",
+  "Job title": "Job title",
+  "griot_hello_interview": "Hello ! Looking to land your dream job?",
+  "griot_support_interview": "Griot is here to support you. Take advantage of our tools and advice to make your next interview a success. Get started now!",
+  "start_now": "Get started now!",
+  "powered_by_griot": "Powered by Griot",
+  "interview_title": "Title of interview",
+  "you": "You",
+  "responds": "Responds",
+  "type_response": "Please enter your answer",
+  "assistance_error": "I am unable to respond to your request at this time. Please check your internet connection and make sure you are in a geographical area authorised to use Griot Assistance.",
+  "this_is_my_response": "Here is my answer to the question",
+  "Interview training": "Interview training",
+  "CV Assistance": "CV Assistance",
+  "Learning": "Learning",
+  "Courses": "Courses",
+  "griot_help_learning": "What universe would you like to explore today?",
+  "griot_support_learning": "Griot gives you unlimited access to thousands of courses and resources. Type in your subject and start your tailor-made learning.",
+  "enter_subject": "Enter your subject here",
+  "describe_more": "Description (optional)"
+}
