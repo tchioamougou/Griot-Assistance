@@ -1,9 +1,8 @@
 <template>
-        <DashboardLayout>
-            <div class="p-5">
-                <input type="file" @change="analyseCv" /><div class="" v-html="res"></div>
-            </div>
-        </DashboardLayout>
+    <div class="p-5">
+        <input type="file" @change="analyseCv" />
+        <div class="" v-html="res"></div>
+    </div>
 </template>
 <script setup>
 // Converts local file information to a GoogleGenerativeAI.Part object.
@@ -11,7 +10,6 @@ import { Buffer } from 'buffer';
 import { model } from '../../gemini';
 import { convertirTexteEnHTML } from '../../utilities';
 import { ref } from 'vue';
-import DashboardLayout from '../../components/DashboardLayout.vue';
 const res = ref('');
 // @ts-ignore
 window.Buffer = Buffer;
@@ -37,7 +35,6 @@ const analyseCv = async (event) => {
         imageParts.push(await fileToGenerativePart(file, file.type))
     }
     console.log('imageParts', imageParts);
-    //const prompt = 'fait une analyse de cv et donne tes remarque poius un note sur 20'
     const prompt = "résoudre le problème dans cette image, vous devez expliquer chaque étape de la résolution afin que je puisse bien comprendre "
     const result = await (model.generateContentStream([prompt, ...imageParts]));
     let text = '';

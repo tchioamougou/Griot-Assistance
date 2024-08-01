@@ -10,12 +10,14 @@ export const textTopSpeech = (text) => {
 
     const utterThis = new SpeechSynthesisUtterance(text);
     for (const voice of voices) {
-        if (voice.name === "Google français") {
+        console.log(voice)
+        if (voice.lang === "fr-FR") {
+            console.log('envoice', voice)
             utterThis.voice = voice;
+            console.log(utterThis);
         }
     }
-    utterThis.pitch = 1;
-    utterThis.rate = 1;
+    console.log(voices);
     utterThis.addEventListener('end', (en) => {
         console.log('End', en);
 

@@ -11,7 +11,6 @@
 </template>
 <script setup>
 // Converts local file information to a GoogleGenerativeAI.Part object.
-import { Buffer } from 'buffer';
 import { model } from '../../gemini';
 import { convertirTexteEnHTML } from '../../utilities';
 import { onBeforeMount, onMounted, ref } from 'vue';

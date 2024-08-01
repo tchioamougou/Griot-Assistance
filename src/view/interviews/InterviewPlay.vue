@@ -4,6 +4,9 @@ import { model } from '../../gemini';
 import { convertText } from '../../utilities';
 import RecordingBtn from '../../components/audio/RecordingBtn.vue';
 import { textTopSpeech } from '../../utilities/speech';
+import AudioPlaySwitcher from '../../components/audio/AudioPlaySwitcher.vue';
+import { useAudioStore } from '../../store/audio';
+import { INTERVIEW_ENTER, INTERVIEW_ERROR } from '../../utilities/constants';
 
 
 const chat = ref(model.startChat({
@@ -15,25 +18,21 @@ const canvas = ref('');
 const generateLearning = async () => {
     isLoanding.value = true;
     try {
-        const prompt = `
-    je dois participe a cette un interview: ${props.title},
-    description du jobs: ${props.description}
-    peut tu me donner des questions et response pour m'entrener.
-    tu poses un question je reponds, et tu poses la seconde question. 
-    L'interview doit avoir 50 questions maximal et a chaque fois que tu pause unn qestio tu notes.
-    A la fin tu me donne un resultat et des amenioration a faire.
-    commence par faire une bref presentation de L'interviewer(Nom: Griot, company: Griot assistance ) et tu demande a l'utilisateur de te repondre par start. 
-    s'il repond start tu commences a poser la premiere question
-    `;
+        const prompt = INTERVIEW_ENTER(props.title, props.description);
         const result = await chat.value.sendMessage(
             prompt
         );
         const response = result.response;
         canvas.value = convertText(response.text());
         chatMessages.value.push({ user: "boot", message: canvas.value });
-        textTopSpeech(canvas.value)
+        if (audioStore.audioPlay) {
+            textTopSpeech(canvas.value)
+        }
     } catch (error) {
-        console.log('Error', error.code);
+        chatMessages.value.push({ user: "boot", message: chatMessages.value.push({ user: "boot", message: INTERVIEW_ERROR }) });
+        if (audioStore.audioPlay) {
+            textTopSpeech(INTERVIEW_ERROR)
+        }
     } finally {
         isLoanding.value = false;
     }
@@ -48,10 +47,12 @@ const sendResponse = async () => {
         const response = result.response;
         canvas.value = convertText(response.text());
         chatMessages.value.push({ user: "boot", message: canvas.value });
-        textTopSpeech(canvas.value)
+        if (audioStore.audioPlay) {
+            textTopSpeech(canvas.value)
+        }
         search.value = '';
     } catch (error) {
-        console.log('Error', error.code);
+        chatMessages.value.push({ user: "boot", message: INTERVIEW_ERROR });
     } finally {
         isLoanding.value = false;
     }
@@ -73,10 +74,12 @@ const generateText = async (file) => {
         canvas.value = convertText(response.text());
         chatMessages.value.push({ user: "boot", message: canvas.value });
         search.value = '';
-        textTopSpeech(canvas.value)
+        if (audioStore.audioPlay) {
+            textTopSpeech(canvas.value);
+        }
         isLoanding.value = false;
     } catch (error) {
-        console.log('Error', error.code);
+        chatMessages.value.push({ user: "boot", message: INTERVIEW_ERROR });
     } finally {
         isLoanding.value = false;
     }
@@ -87,16 +90,23 @@ const props = defineProps({
 });
 onMounted(() => {
     generateLearning();
-})
+});
+const audioStore = useAudioStore();
 </script>
 
 <template>
     <div class="right-0 mr-4 bg-white p-6 rounded-lg border border-[#e5e7eb] dark:bg-boxdark dark:border-boxdark">
         <!-- Heading -->
-        <div class="flex flex-col space-y-1.5 pb-6">
-            <h2 class="font-semibold text-lg tracking-tight dark:text-white">Interview: {{ title }}</h2>
-            <p class="text-sm text-[#6b7280] leading-3">Powered by Griot</p>
+        <div class="flex justify-between">
+            <div class="flex flex-col space-y-1.5 pb-6">
+                <h2 class="font-semibold text-lg tracking-tight dark:text-white">Interview: {{ title }}</h2>
+                <p class="text-sm text-[#6b7280] leading-3">Powered by Griot</p>
+            </div>
+            <AudioPlaySwitcher>
+
+            </AudioPlaySwitcher>
         </div>
+
         <!-- Chat Container -->
         <div class="pr-4 h-[774px] overflow-auto" style="min-width: 100%; display: block;" id="messageBody">
             <template v-for="(ch, i) in chatMessages" :key="i">
@@ -111,8 +121,9 @@ onMounted(() => {
                                 </path>
                             </svg></div>
                     </span>
-                    <p class="leading-relaxed"><span class="block font-bold text-gray-700">Griot AI </span> <span
-                            v-html="ch.message"></span></p>
+                    <p class="leading-relaxed"><span class="block font-bold text-gray-700">Griot AI </span>
+                        <span v-html="ch.message"></span>
+                    </p>
                 </div>
 
                 <!--  User Chat Message -->
@@ -138,6 +149,28 @@ onMounted(() => {
                     </p>
                 </div>
             </template>
+            <!-- is typing Section-->
+            <div class="flex gap-3 my-4 text-gray-600 text-sm flex-1 dark:text-white" v-if="isLoanding">
+                <span class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">
+                    <div class="rounded-full bg-gray-100 border p-1"><svg stroke="none" fill="black" stroke-width="1.5"
+                            viewBox="0 0 24 24" aria-hidden="true" height="20" width="20"
+                            xmlns="http://www.w3.org/2000/svg" class="dark:fill-white">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z">
+                            </path>
+                        </svg></div>
+                </span>
+                <p class="leading-relaxed"><span class="block font-bold text-gray-700">Griot AI </span>
+                <div class='flex space-x-2 justify-center items-center '>
+                    <span class='sr-only'>Loading...</span>
+                    <div class='h-3 w-3 dark:bg-white bg-black rounded-full animate-bounce [animation-delay:-0.3s]'>
+                    </div>
+                    <div class='h-3 w-3 dark:bg-white bg-black rounded-full animate-bounce [animation-delay:-0.15s]'>
+                    </div>
+                    <div class='h-3 w-3 dark:bg-white bg-black rounded-full animate-bounce'></div>
+                </div>
+                </p>
+            </div>
         </div>
         <!-- Input box  -->
         <div class="flex items-center pt-0 mt-2">

@@ -68,9 +68,9 @@ const routes = [
     {
         path: '/interviews',
         name: 'interviews',
-        component: () => import('../view/interviews/InterviewList.vue'),
+        component: () => import('../view/interviews/InterviewsList.vue'),
         meta: {
-            title: ' Dashboard'
+            title: 'Interviews'
         }
     },
 
