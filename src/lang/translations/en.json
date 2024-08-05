@@ -19,5 +19,48 @@
   "griot_help_learning": "What universe would you like to explore today?",
   "griot_support_learning": "Griot gives you unlimited access to thousands of courses and resources. Type in your subject and start your tailor-made learning.",
   "enter_subject": "Enter your subject here",
-  "describe_more": "Description (optional)"
+  "describe_more": "Description (optional)",
+  "Course Structure Creation": "Course Structure Creation",
+  "Personalized Training Paths": "Personalized Training Paths",
+  "CV Assistance and Optimization": "CV Assistance and Optimization",
+  "home_title_1": "Transforming Education Through",
+  "home_title_2": "AI and Innovation",
+  "home_description": "Discover how artificial intelligence is revolutionizing the way we learn. Explore innovative solutions that are reshaping education, from personalized learning paths and intelligent tutoring systems to automated course structure generation and AI-powered interview training. Join us in reimagining the future of education",
+  "items_course": {
+    "title": "Custom Course Structure Creation",
+    "description": "We design tailored, effective course structures to meet your specific needs.",
+    "item_1": "Goal analysis",
+    "item_2": "Training module development",
+    "item_3": "Educational materials creation"
+  },
+  "iterms_interview": {
+    "title": "Interview Preparation",
+    "description": "We guide you through your job interview preparation to help you stand out.",
+    "item_1": "Mock interviews",
+    "item_2": "Non-verbal communication advice",
+    "item_3": "Educational materials creation"
+  },
+  "items_training_path": {
+    "title": "Personalized Training Paths",
+    "description": "Experience a learning journey tailored to your unique goals and pace.",
+    "item_1": "Adaptive learning algorithms",
+    "item_2": "Personalized content recommendations",
+    "item_3": "Progress tracking"
+  },
+  "items_cv": {
+    "title": "CV Assistance and Optimization",
+    "description": "Enhance your job search with a professionally crafted CV.",
+    "item_1": "CV writing and formatting",
+    "item_2": "Keyword optimization",
+    "item_3": "Cover letter guidance"
+  },
+  "Expore": "Expore",
+  "Generate new course structure": "Generate new course structure",
+  "Course title": "Course title",
+  "Export pdf": "Export pdf",
+  "Export as json": "Export as json",
+  "Module": "Module",
+  "Description": "Description",
+  "Theme": "Theme",
+  "Objectives": "Objectives"
 }

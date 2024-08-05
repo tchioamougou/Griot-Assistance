@@ -1,10 +1,10 @@
 <template>
     <div class="lg:container lg:mx-auto lg:py-16 md:py-12 md:px-6 py-12 px-4 dark:text-white">
         <div class="flex justify-end gap-4 mb-2">
-            <button class="bg-primary text-white" @click="exportAsPdf">Export pdf</button>
-            <button class="bg-primary text-white" @click="exportAsJson"> Export as json</button>
+            <button class="bg-primary text-white" @click="exportAsPdf">{{ $t('Export pdf') }}</button>
+            <button class="bg-primary text-white" @click="exportAsJson">{{ $t('Export as json') }}</button>
         </div>
-        <h1 class="font-bold mb-10">Course title: {{ course.title }}</h1>
+        <h1 class="font-bold mb-10">{{ $t('Course title') }}: {{ course.title }}</h1>
         <div class="md:px-6 mb-5">
             <h4 class="mb-2 mt-2">Description:</h4>
             <p class="text-base leading-6 text-gray-600 dark:text-gray-300 font-normal">
@@ -23,7 +23,7 @@
                             class="flex justify-center items-center dark:text-white font-medium text-base leading-6 md:leading-4 text-gray-800">
                             <span
                                 class="lg:mr-6 mr-4 dark:text-white lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-gray-800">
-                                Module {{ i + 1 }}: {{
+                                {{ $t('Module') }} {{ i + 1 }}: {{
                                     mod.name }}</span>
                         </p>
                     </div>
@@ -38,11 +38,11 @@
                 </div>
                 <div id="menu" class="hidden mt-6 w-full">
                     <div class="md:px-6">
-                        <h4 class="mb-2 mt-2">Description:</h4>
+                        <h4 class="mb-2 mt-2">{{ $t('Description') }}:</h4>
                         <p class="text-base leading-6 text-gray-600 dark:text-gray-300 font-normal">
                             {{ mod.description }}
                         </p>
-                        <h4 class="mb-2 mt-2">Objectives:</h4>
+                        <h4 class="mb-2 mt-2">{{ $t('Objectives') }}:</h4>
                         <ul class="mb-2 mt-2">
                             <li v-for="(o, j) in mod.objectives">{{ o }}</li>
                         </ul>
@@ -55,7 +55,7 @@
                                         class="flex justify-center items-center dark:text-white font-medium text-base leading-6 md:leading-4 text-gray-800">
                                         <span
                                             class="lg:mr-6 mr-4 dark:text-white lg:text-xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-gray-800">
-                                            Lesson {{ i + 1 }} {{
+                                            {{ $t('Lesson') }} {{ i + 1 }} {{
                                                 le.name }}</span>
                                     </p>
                                 </div>
@@ -72,11 +72,11 @@
                             </div>
                             <div id="menu" class="hidden mt-6 w-full">
                                 <div class="md:px-6">
-                                    <h4 class="mb-2 mt-2">Description:</h4>
+                                    <h4 class="mb-2 mt-2">{{ $t('Description') }}:</h4>
                                     <p class="text-base leading-6 text-gray-600 dark:text-gray-300 font-normal">
                                         {{ le.description }}
                                     </p>
-                                    <h4 class="mb-2 mt-2">Objectives:</h4>
+                                    <h4 class="mb-2 mt-2">{{ $t('Objectives') }}:</h4>
                                     <ul class="mb-2 mt-2">
                                         <li v-for="(o, j) in le.objectives">{{ o }}</li>
                                     </ul>

@@ -17,11 +17,14 @@ onClickOutside(target, () => {
 const handleItemClick = (item) => {
   const pageName = sidebarStore.page === item.label ? '' : item.label
   sidebarStore.page = pageName;
-  console.log('sidebarStore', pageName)
+  console.log('sidebarStore', pageName);
+}
+const home = () => {
+  window.location.href = '/';
 }
 
 const items = ref([{
-  label: "Courses",
+  label: "Course Structure Creation",
   link: "/courses",
   name: "courses",
   icon: `<svg class="w-6 h-6" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +35,7 @@ const items = ref([{
 `,
 },
 {
-  label: "Learning",
+  label: "Personalized Training Paths",
   link: "/learning",
   name: "learning",
   icon: `<svg class="w-6 h-6" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +63,7 @@ const items = ref([{
           </svg>
 `,
 }, */{
-  label: "CV Assistance",
+  label: "CV Assistance and Optimization",
   link: "/cv_assistance",
   name: "courses",
   icon: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -93,7 +96,7 @@ const items = ref([{
 
     <div ref="target" :class="isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
       class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-black lg:translate-x-0 lg:static  dark:bg-boxdark lg:inset-0">
-      <div class="flex items-center justify-center mt-8">
+      <div class="flex items-center justify-center mt-8" @click="home">
         <div class="flex items-center">
           <img src="./../assets/images/logo.png" class="h-12" />
 
@@ -116,7 +119,7 @@ const items = ref([{
       <div class="mt-10 px-5 lg:hidden">
         <LanguageButton class="focus:outline-none " />
         <div class="mt-6 flex justify-between">
-          <span class="text-white">Theme</span>
+          <span class="text-white">{{ $t('Theme') }}</span>
           <DarkModeSwitcher class="focus:outline-none lg:hidden" />
         </div>
       </div>

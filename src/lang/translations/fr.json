@@ -15,5 +15,50 @@
   "Learning": "Apprentissage",
   "Courses": "Cours",
   "griot_help_learning": "Quel univers aimeriez-vous explorer aujourd'hui ?",
-  "griot_support_learning": "Griot vous offre un accès illimité à des milliers de cours et de ressources. Saisissez votre sujet et commencez votre apprentissage sur-mesure."
+  "griot_support_learning": "Griot vous offre un accès illimité à des milliers de cours et de ressources. Saisissez votre sujet et commencez votre apprentissage sur-mesure.",
+  "enter_subject": "Saisissez votre sujet ici",
+  "describe_more": "Description (optionnel)",
+  "Course Structure Creation": "Création de structure de cours",
+  "Personalized Training Paths": "Parcours de formation personnalisés",
+  "CV Assistance and Optimization": "Assistance et optimisation de CV",
+  "home_title_1": "Transformer l'éducation par",
+  "home_title_2": "l'IA et l'innovation",
+  "home_description": "Découvrez comment l'intelligence artificielle révolutionne la façon dont nous apprenons. Explorez des solutions innovantes qui redéfinissent l'éducation, des parcours d'apprentissage personnalisés et des systèmes de tutorat intelligents à la génération automatisée de structures de cours et à la formation à l'entretien assistée par IA. Rejoignez-nous pour réinventer l'avenir de l'éducation",
+  "items_course": {
+    "title": "Création de structure de cours personnalisée",
+    "description": "Nous concevons des structures de cours personnalisées et efficaces pour répondre à vos besoins spécifiques.",
+    "item_1": "Analyse des objectifs",
+    "item_2": "Développement de modules de formation",
+    "item_3": "Création de supports pédagogiques"
+  },
+  "iterms_interview": {
+    "title": "Préparation à l'entretien",
+    "description": "Nous vous guidons dans la préparation de votre entretien d'embauche pour vous aider à vous démarquer.",
+    "item_1": "Simulations d'entretiens",
+    "item_2": "Conseils sur la communication non verbale",
+    "item_3": "Création de supports pédagogiques"
+  },
+  "items_training_path": {
+    "title": "Parcours de formation personnalisés",
+    "description": "Découvrez un parcours d'apprentissage adapté à vos objectifs et à votre rythme.",
+    "item_1": "Algorithmes d'apprentissage adaptatifs",
+    "item_2": "Recommandations de contenu personnalisées",
+    "item_3": "Suivi des progrès"
+  },
+  "items_cv": {
+    "title": "Assistance et optimisation de CV",
+    "description": "Améliorez votre recherche d'emploi avec un CV professionnellement conçu.",
+    "item_1": "Rédaction et formatage de CV",
+    "item_2": "Optimisation des mots-clés",
+    "item_3": "Conseils pour la lettre de motivation"
+  },
+  "Expore": "Explorer",
+  "Generate new course structure": "Générer une nouvelle structure de cours",
+  "Course title": "Titre du cours",
+  "Export pdf": "Exporter en PDF",
+  "Export as json": "Exporter en JSON",
+  "Module": "Module",
+  "Description": "Description",
+  "Theme": "Thème",
+  "Objectives": "Objectifs"
 }

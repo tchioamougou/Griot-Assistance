@@ -1,7 +1,16 @@
 <template>
     <div class="p-5">
-        <input type="file" @change="analyseCv" />
-        <div class="" v-html="res"></div>
+        <div class="container mx-auto p-4">
+            <h1 class="text-3xl font-bold   
+            text-center mb-4">Welcome to CV Assistance!</h1>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4">Upload Your CV</h2>
+                <input type="file" id="cvFile" class="border border-gray-300 rounded-md p-2" @change="analyseCv">
+
+                <div id="cvAnalysis"></div>
+            </div>
+        </div>
     </div>
 </template>
 <script setup>

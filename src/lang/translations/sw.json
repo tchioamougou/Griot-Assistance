@@ -1,3 +1,66 @@
 {
-  "login": "Ingia"
+  "login": "ingia",
+  "Describe more (optional)": "Eleza zaidi (hiari)",
+  "Job title": "Jina la kazi",
+  "griot_hello_interview": "Habari! Unatafuta kazi yako ya ndoto?",
+  "griot_support_interview": "Griot yupo kukusaidia. Tumia zana na ushauri wetu kufanya mahojiano yako ijayo yawe mafanikio. Anza sasa!",
+  "start_now": "Anza sasa!",
+  "powered_by_griot": "Imeandaliwa na Griot",
+  "interview_title": "Kichwa cha mahojiano",
+  "you": "Wewe",
+  "responds": "Anajibu",
+  "type_response": "Tafadhali ingiza jibu lako",
+  "assistance_error": "Siwezi kujibu ombi lako kwa sasa. Tafadhali angalia muunganisho wako wa intaneti na uhakikishe uko katika eneo linaloidhinishwa kutumia Griot Assistance.",
+  "this_is_my_response": "Huu ndio jibu langu kwa swali",
+  "Interview training": "Mafunzo ya mahojiano",
+  "CV Assistance": "Usaidizi wa CV",
+  "Learning": "Kujifunza",
+  "Courses": "Kozi",
+  "griot_help_learning": "Ungependa kuchunguza ulimwengu upi leo?",
+  "griot_support_learning": "Griot inakupatia ufikiaji usio na kikomo wa maelfu ya kozi na rasilimali. Andika somo lako na uanze kujifunza kwa njia yako.",
+  "enter_subject": "Andika somo lako hapa",
+  "describe_more": "Eleza zaidi (hiari)",
+  "Course Structure Creation": "Uundaji wa Muundo wa Kozi",
+  "Personalized Training Paths": "Njia za Mafunzo Zilizobinafsishwa",
+  "CV Assistance and Optimization": "Usaidizi na Uboreshaji wa CV",
+  "home_title_1": "Kubadilisha Elimu Kupitia",
+  "home_title_2": "Akili Bandia na Ubunifu",
+  "home_description": "Gundua jinsi akili bandia inabadilisha jinsi tunavyojifunza. Chunguza suluhu shirikishi zinazobadili elimu, kutoka njia za kujifunza zilizobinafsishwa na mifumo ya ufundishaji yenye akili hadi uundaji wa muundo wa kozi kiotomatiki na mafunzo ya mahojiano yaliyoimarishwa na akili bandia. Jiunge nasi katika kuunda upya mustakabali wa elimu.",
+  "items_course": {
+    "title": "Uundaji wa Muundo wa Kozi Maalum",
+    "description": "Tunabuni miundo ya kozi iliyobinafsishwa na yenye ufanisi ili kukidhi mahitaji yako maalum.",
+    "item_1": "Uchambuzi wa malengo",
+    "item_2": "Uendelezaji wa moduli za mafunzo",
+    "item_3": "Uundaji wa vifaa vya kufundishia"
+  },
+  "iterms_interview": {
+    "title": "Maandalizi ya Mahojiano",
+    "description": "Tunakusaidia katika maandalizi yako ya mahojiano ya kazi ili kukusaidia kujitokeza.",
+    "item_1": "Mahojiano ya majaribio",
+    "item_2": "Ushauri wa mawasiliano yasiyo ya maneno",
+    "item_3": "Uundaji wa vifaa vya kufundishia"
+  },
+  "items_training_path": {
+    "title": "Njia za Mafunzo Zilizobinafsishwa",
+    "description": "Pata uzoefu wa safari ya kujifunza iliyobinafsishwa kwa malengo na kasi yako ya kipekee.",
+    "item_1": "Algorithmu za kujifunza zinazobadilika",
+    "item_2": "Mapendekezo ya yaliyomo yaliyobinafsishwa",
+    "item_3": "Ufuatiliaji wa maendeleo"
+  },
+  "items_cv": {
+    "title": "Usaidizi na Uboreshaji wa CV",
+    "description": "Boresha utafutaji wako wa kazi kwa CV iliyoundwa kitaalamu.",
+    "item_1": "Uandishi na umbizo la CV",
+    "item_2": "Uboreshaji wa maneno muhimu",
+    "item_3": "Mwongozo wa barua ya chanjo"
+  },
+  "Expore": "Chunguza",
+  "Generate new course structure": "Unda muundo mpya wa kozi",
+  "Course title": "Jina la kozi",
+  "Export pdf": "Hifadhi kama PDF",
+  "Export as json": "Hifadhi kama JSON",
+  "Module": "Moduli",
+  "Description": "Maelezo",
+  "Theme": "Mada",
+  "Objectives": "Malengo"
 }
