@@ -30,7 +30,7 @@ const endChat = () => {
                 </div>
             </div>
             <div class="flex flex-wrap justify-center gap-5 dark:bg-boxdark dark:py-5 mt-10">
-                <form class="w-9/12" @submit.prevent="generateLearning">
+                <form class="lg:w-9/12 w-11/12" @submit.prevent="generateLearning">
                     <div class="mb-6">
                         <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             {{ $t('Job title') }}</label>

@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { useSidebar } from '../composables/useSidebar'
 import { useSidebarStore } from './../store/sidebar'
 import { onClickOutside } from '@vueuse/core';
+import LanguageButton from './header/LanguageButton.vue';
+import DarkModeSwitcher from './header/DarkModeSwitcher.vue';
 const { isOpen } = useSidebar()
 const sidebarStore = useSidebarStore()
 
@@ -98,6 +100,7 @@ const items = ref([{
           <span class="mx-2 text-2xl font-semibold text-white">Griot Assistance</span>
         </div>
       </div>
+
       <nav class="mt-10 ps-5">
         <div class="mb-6 flex flex-col gap-1.5">
           <router-link v-for="(it, i) in items" :key="i" @click.prevent="handleItemClick(it)" :to="it.link"
@@ -110,6 +113,13 @@ const items = ref([{
           </router-link>
         </div>
       </nav>
+      <div class="mt-10 px-5 lg:hidden">
+        <LanguageButton class="focus:outline-none " />
+        <div class="mt-6 flex justify-between">
+          <span class="text-white">Theme</span>
+          <DarkModeSwitcher class="focus:outline-none lg:hidden" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -69,7 +69,7 @@ const sendResponse = async () => {
 const generateText = async (file) => {
     isLoanding.value = true;
     try {
-        const promps = t(this_is_my_response);
+        const promps = t('this_is_my_response');
         chatMessages.value.push({ user: "you", type: "audio", link: file.audioURL, message: canvas.value });
         const result = await chat.value.sendMessage(
             [promps, {
@@ -88,6 +88,7 @@ const generateText = async (file) => {
         }
         isLoanding.value = false;
     } catch (error) {
+        console.log(error)
         chatMessages.value.push({ user: "boot", message: t(INTERVIEW_ERROR) });
         if (audioStore.audioPlay) {
             textTopSpeech(t(INTERVIEW_ERROR))
@@ -122,7 +123,7 @@ const audioStore = useAudioStore();
         </div>
 
         <!-- Chat Container -->
-        <div class="pr-4 h-[774px] overflow-auto" style="min-width: 100%; display: block;" id="messageBody">
+        <div class="pr-4  min-h-full overflow-auto" style="min-width: 100%; display: block;" id="messageBody">
             <template v-for="(ch, i) in chatMessages" :key="i">
                 <!-- Chat Message AI -->
                 <div class="flex gap-3 my-4 text-gray-600 text-sm flex-1 dark:text-white" v-if="ch.user === 'boot'">
@@ -189,9 +190,9 @@ const audioStore = useAudioStore();
         <!-- Input box  -->
         <div class="flex items-center pt-0 mt-2">
             <form @submit.prevent="sendResponse" class="flex items-center justify-center w-full space-x-2">
-                <input :disabled="isLoanding"
+                <textarea :disabled="isLoanding"
                     class="dark:bg-black dark:text-white dark:border-boxdark flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] disabled:cursor-not-allowed disabled:opacity-50 text-[#030712] focus-visible:ring-offset-2"
-                    :placeholder="$t('type_response')" v-model="search" />
+                    :placeholder="$t('type_response')" v-model="search" rows="4" />
                 <RecordingBtn @finish="generateText"></RecordingBtn>
                 <button :disabled="isLoanding"
                     class="inline-flex items-center justify-center rounded-md text-sm font-medium text-[#f9fafb] disabled:pointer-events-none disabled:opacity-50 bg-black hover:bg-[#111827E6] h-10 px-4 py-2">

@@ -20,7 +20,7 @@ onBeforeMount(() => {
       <router-view></router-view>
     </template>
   </DashboardLayout>
-  <chat-bot></chat-bot>
+  <!-- <chat-bot></chat-bot>-->
 </template>
 
 <style scoped></style>

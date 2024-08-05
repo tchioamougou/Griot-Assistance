@@ -66,7 +66,7 @@ const onGoBack = () => {
         <span class="dark:text-white"></span>
         <div class="mb-6 flex">
             <input type="text" id="large-input" v-model="courseTitle" required placeholder="Course title"
-                class=" dark:bg-black block w-8/12 p-4 text-gray-900 border border-gray-300 rounded-e-none border-e-0 bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class=" dark:bg-black block lg:w-8/12 w-9/12 p-4 text-gray-900 border border-gray-300 rounded-e-none border-e-0 bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <button @click="addingNew = true"
                 class="p-4 font-medium tracking-wide text-white bg-indigo-600 rounded-s-none hover:bg-indigo-500 focus:outline-none">
                 Generate new course structure
