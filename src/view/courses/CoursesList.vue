@@ -61,7 +61,7 @@ const onGoBack = () => {
     </div>
     <form @submit.prevent="fetching">
         <span class="dark:text-white"></span>
-        <div class="mb-6 flex">
+        <div class="mb-6 flex justify-center">
             <input type="text" id="large-input" v-model="courseTitle" required :placeholder="$t('Course title')"
                 class=" dark:bg-black block lg:w-8/12 w-9/12 p-4 text-gray-900 border border-gray-300 rounded-e-none border-e-0 bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <button @click="addingNew = true"

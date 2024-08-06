@@ -34,9 +34,8 @@ const logout = async () => {
       <DarkModeSwitcher class="focus:outline-none hidden lg:block" />
       <div class="flex items-center gap-5">
         <LanguageButton class="focus:outline-none hidden lg:block" />
-        <router-link to="/free_trial" v-if="!firebaseUser" class="focus:outline-none">Sign
-          up</router-link>
-        <router-link to="/login" v-if="!firebaseUser" class="focus:outline-none">Login</router-link>
+        <router-link to="/free_trial" v-if="!firebaseUser" class="focus:outline-none">{{ $t('Sign up') }}</router-link>
+        <router-link to="/login" v-if="!firebaseUser" class="focus:outline-none">{{ $t('login') }}</router-link>
         <div class="relative" v-if="firebaseUser">
           <img class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
             @click="dropdownOpen = !dropdownOpen"

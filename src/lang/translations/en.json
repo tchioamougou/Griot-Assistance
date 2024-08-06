@@ -1,5 +1,5 @@
 {
-  "login": "login",
+  "login": "Login",
   "Describe more (optional)": "Describe more (optional)",
   "Job title": "Job title",
   "griot_hello_interview": "Hello ! Looking to land your dream job?",
@@ -62,5 +62,25 @@
   "Module": "Module",
   "Description": "Description",
   "Theme": "Theme",
-  "Objectives": "Objectives"
+  "Objectives": "Objectives",
+  "Your email": "Your email",
+  "Create an account": "Create an account",
+  "Confirm password": "Confirm password",
+  "Password": "Password",
+  "invalid_email_address": "",
+  "signup_error_occur": "signup_error_occur",
+  "email_used": "email_used",
+  "passwords don't match": "passwords don't match",
+  "price_description": "At Griot, we harness the potential of AI to personalize learning experiences.",
+  "Get started": "Get started",
+  "Basic": "Basic",
+  "Standard": "Standard",
+  "Premiun": "Premiun",
+  "month": "month",
+  "Individual configuration": "Individual configuration",
+  "No setup, or hidden fees": "No setup, or hidden fees",
+  "24/7 Support": "24/7 Support",
+  "Sign up": "Sign up",
+  "Already have an account? ": "Already have an account?",
+  "or sign in with": "or sign in with"
 }

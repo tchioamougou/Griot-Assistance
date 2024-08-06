@@ -1,11 +1,11 @@
-export const NO_PASSWORD_MATCH = 'les mot de pass ne sont corresponde pas';
+export const NO_PASSWORD_MATCH = 'Passwords don\'t match';
 export const INTERVIEW_ERROR = "assistance_error";
 
 
 
 
 export const INTERVIEW_ENTER = (title, description) => {
-    return `
+  return `
 "Je souhaite me préparer à un entretien d'embauche pour le poste de "${title}",
 ${description ? ('dont la description est la suivante:' + description) : ''}
 
@@ -22,7 +22,7 @@ Pourrais-tu commencer par te présenter et me demander de démarrer l'entretien 
 `;
 }
 export const INTERVIEW_ENTER_ENG = (title, description) => {
-    return `I would like to prepare for a job interview for the position of ${title},
+  return `I would like to prepare for a job interview for the position of ${title},
 ${description ? ('with the following description:' + description) : ''}
 
 
@@ -39,7 +39,7 @@ Could you start by introducing yourself and asking me to start the interview ? "
 }
 
 export const LEARN_ENTER_FR = (tile, description) => {
-    return `
+  return `
     Je souhaite créer un programme de cours sur le thème ${tile},
     ${description ? ('dont la description est la suivante:' + description) : ''}
     
@@ -70,7 +70,7 @@ export const LEARN_ENTER_FR = (tile, description) => {
 }
 
 export const LEARN_ENTER_ENG = (tile, description) => {
-    return `
+  return `
     I would like to create a course programme on the theme ${tile},
     ${description ? ('whose description is as follows:' + description) : ''}
     Please propose a course structure including modules and lessons. Each module and lesson must have a title, a description and an objective.
@@ -101,7 +101,7 @@ export const LEARN_ENTER_ENG = (tile, description) => {
 
 
 export const COURSE_ENTER_FR = (tile) => {
-    return `
+  return `
         Générer une structure de cours au format JSON.
         Le cours doit s'intituler ${tile}.
         Chaque module doit contenir une liste de leçons.
@@ -136,7 +136,7 @@ export const COURSE_ENTER_FR = (tile) => {
 
 
 export const COURSE_ENTER_EN = (tile) => {
-    return `
+  return `
         Generate a course structure in JSON format.
         The course must be called ${tile}.
         Each module must contain a list of lessons.
